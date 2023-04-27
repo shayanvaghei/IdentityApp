@@ -52,7 +52,7 @@ namespace Api.Controllers
             var user = await _userManager.FindByNameAsync(model.UserName);
             if (user == null) return Unauthorized("Invalid username or password");
 
-            if (user.EmailConfirmed == false) return Unauthorized("Please confirm you email.");
+            if (user.EmailConfirmed == false) return Unauthorized("Please confirm your email.");
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
             if (!result.Succeeded) return Unauthorized("Invalid username or password");

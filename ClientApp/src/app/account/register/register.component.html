@@ -39,7 +39,7 @@
                         [class.is-invalid]="submitted && registerForm.get('email')?.errors">
                     <label for="email">Email</label>
                     <span class="text-danger" *ngIf="submitted && registerForm.get('email')?.hasError('required')">
-                        Email name is required
+                        Email is required
                     </span>
                     <span class="text-danger" *ngIf="submitted && registerForm.get('email')?.hasError('pattern')">
                         Invalid email address
