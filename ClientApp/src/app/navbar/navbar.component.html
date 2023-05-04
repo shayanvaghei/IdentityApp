@@ -13,9 +13,11 @@
                         <a class="nav-link" routerLink="/" routerLinkActive="active"
                             [routerLinkActiveOptions]="{exact: true}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/play" routerLinkActive="active">Play</a>
-                    </li>
+                    <ng-container *ngIf="accountService.user$ | async">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/play" routerLinkActive="active">Play</a>
+                        </li>
+                    </ng-container>
                 </ul>
 
                 <ul class="navbar-nav" *ngIf="(accountService.user$ | async) === null">

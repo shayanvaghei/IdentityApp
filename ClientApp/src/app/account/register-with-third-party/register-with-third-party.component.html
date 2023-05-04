@@ -1,11 +1,10 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" *ngIf="provider && access_token && userId">
     <div class="col-12 col-lg-5">
         <main class="form-signin">
             <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
                 <div class="text-center mb-4">
                     <h3 class="mb-3 font-weight-normal">
-                        Let's Get Started to
-                        <span class="text-danger">Play</span>
+                        Creating an account using your <span class="text-warning">{{provider | titlecase}}</span>
                     </h3>
                 </div>
                 <div class="form-floating mb-3">
@@ -34,31 +33,6 @@
                         Last name must be at least 3, and maximum 15 characters
                     </span>
                 </div>
-                <div class="form-floating mb-3">
-                    <input formControlName="email" type="text" placeholder="Email" class="form-control"
-                        [class.is-invalid]="submitted && registerForm.get('email')?.errors">
-                    <label for="email">Email</label>
-                    <span class="text-danger" *ngIf="submitted && registerForm.get('email')?.hasError('required')">
-                        Email is required
-                    </span>
-                    <span class="text-danger" *ngIf="submitted && registerForm.get('email')?.hasError('pattern')">
-                        Invalid email address
-                    </span>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input formControlName="password" type="password" placeholder="Password" class="form-control"
-                        [class.is-invalid]="submitted && registerForm.get('password')?.errors">
-                    <label for="password">Password</label>
-                    <span class="text-danger" *ngIf="submitted && registerForm.get('password')?.hasError('required')">
-                        Password is required
-                    </span>
-                    <span class="text-danger"
-                        *ngIf="submitted && 
-                    registerForm.get('password')?.hasError('minlength') || registerForm.get('password')?.hasError('maxlength')">
-                        Password must be at least 6, and maximum 15 characters
-                    </span>
-                </div>
 
                 <div class="form-floatin" *ngIf="errorMessages.length > 0">
                     <app-validation-messages [errorMessages]="errorMessages"></app-validation-messages>
@@ -68,22 +42,6 @@
                     <button class="btn btn-lg btn-info" type="submit">Create Account</button>
                 </div>
             </form>
-
-            <div class="row d-flex justify-content-center mt-3">
-                <div class="col-4">
-                    <hr>
-                </div>
-                <div class="col-4 text-center">OR Sign up using</div>
-                <div class="col-4">
-                    <hr>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between my-3">
-                <div #googleButton></div>
-                <button style="width: 180px;" class="btn btn-primary btn-sm" (click)="registerWithFacebook()">
-                    Facebook
-                </button>
-            </div>
         </main>
     </div>
 </div>
