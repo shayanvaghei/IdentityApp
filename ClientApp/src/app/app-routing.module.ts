@@ -12,10 +12,10 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthorizationGuard],
     children: [
-      {path: 'play', component: PlayComponent}
+      { path: 'play', component: PlayComponent },
+      { path: 'admin', loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule) },
     ]
   },
-  //{ path: 'play', component: PlayComponent },
   // Implenting lazy loading by the following format
   { path: 'account', loadChildren: () => import('./account/account.module').then(module => module.AccountModule) },
   { path: 'not-found', component: NotFoundComponent },
