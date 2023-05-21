@@ -118,7 +118,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseCors(opt =>
 {
-    opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins(builder.Configuration["JWT:ClientUrl"]);
+    opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://localhost:4200");
 });
 
 if (app.Environment.IsDevelopment())
@@ -134,7 +134,12 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+// is going to look for index.html and serving our api application using index.html
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapControllers();
+app.MapFallbackToController("Index", "Fallback");
 
 #region ContextSeed
 using var scope = app.Services.CreateScope();
