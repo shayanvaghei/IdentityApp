@@ -72,7 +72,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             // validate the issuer (who ever is issuing the JWT)
             ValidateIssuer = true,
             // don't validate audience (angular side)
-            ValidateAudience = false
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero
         };
     });
 

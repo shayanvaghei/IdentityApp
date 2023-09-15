@@ -1,0 +1,13 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title pull-left">Session Timeout Warning</h4>
+</div>
+<div class="modal-body">
+    <p style="font-size: 1.5rem;">
+        Your session is about to time out, do you want to continue your session?
+        {{displayTime}} time left
+    </p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+    <button class="btn btn-success" (click)="resumeSession()">Stay Logged In</button>
+</div>

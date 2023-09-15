@@ -21,11 +21,20 @@ export class UserHasRoleDirective implements OnInit{
         if (user) {
           const decodedToken: any = jwt_decode(user.jwt);
 
-          if (decodedToken.role.some((role: any) => this.appUserHasRole.includes(role))) {
-            this.viewContainerRef.createEmbeddedView(this.templateRef);
+          if (Array.isArray(decodedToken.role)) {
+            if (decodedToken.role.some((role: any) => this.appUserHasRole.includes(role))) {
+              this.viewContainerRef.createEmbeddedView(this.templateRef);
+            } else {
+              this.viewContainerRef.clear();
+            }
           } else {
-            this.viewContainerRef.clear();
+            if (this.appUserHasRole.includes(decodedToken.role)) {
+              this.viewContainerRef.createEmbeddedView(this.templateRef);
+            } else {
+              this.viewContainerRef.clear();
+            }
           }
+          
         } else {
           this.viewContainerRef.clear();
         }
